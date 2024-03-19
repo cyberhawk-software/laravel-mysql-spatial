@@ -21,13 +21,13 @@ class SpatialTraitTest extends BaseTestCase
      */
     protected $queries;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->model = new TestModel();
         $this->queries = &$this->model->getConnection()->getPdo()->queries;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->model->getConnection()->getPdo()->resetQueries();
     }
@@ -365,16 +365,16 @@ class SpatialTraitTest extends BaseTestCase
         $linestring2 = new \Cyberhawk\LaravelMysqlSpatial\Types\LineString([$point3, $point4]);
         $point5 = new Point(2, 2);
         $point6 = new Point(1, 1);
-        $linestring3 = new \Grimzy\LaravelMysqlSpatial\Types\LineString([$point5, $point6]);
+        $linestring3 = new \Cyberhawk\LaravelMysqlSpatial\Types\LineString([$point5, $point6]);
 
-        return new \Grimzy\LaravelMysqlSpatial\Types\Polygon([$linestring1, $linestring2, $linestring3]);
+        return new \Cyberhawk\LaravelMysqlSpatial\Types\Polygon([$linestring1, $linestring2, $linestring3]);
     }
 
     public function testScopeComparison()
     {
         $query = TestModel::comparison('point', $this->buildTestPolygon(), 'within');
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -387,7 +387,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::within('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -400,7 +400,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::crosses('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -413,7 +413,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::contains('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -426,7 +426,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::disjoint('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -439,7 +439,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::equals('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -452,7 +452,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::intersects('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -465,7 +465,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::overlaps('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -478,7 +478,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $query = TestModel::doesTouch('point', $this->buildTestPolygon());
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->wheres);
         $bindings = $q->getRawBindings()['where'];
@@ -491,7 +491,7 @@ class SpatialTraitTest extends BaseTestCase
     {
         $point = new Point(1, 2);
         $this->assertException(
-            \Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException::class,
+            \Cyberhawk\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException::class,
             'does-not-exist'
         );
         TestModel::orderBySpatial('point', $point, 'does-not-exist');
@@ -502,7 +502,7 @@ class SpatialTraitTest extends BaseTestCase
         $point = new Point(1, 2);
         $query = TestModel::orderByDistance('point', $point);
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->orders);
         $bindings = $q->getRawBindings()['order'];
@@ -516,7 +516,7 @@ class SpatialTraitTest extends BaseTestCase
         $point = new Point(1, 2);
         $query = TestModel::orderByDistanceSphere('point', $point);
 
-        $this->assertInstanceOf(\Grimzy\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
+        $this->assertInstanceOf(\Cyberhawk\LaravelMysqlSpatial\Eloquent\Builder::class, $query);
         $q = $query->getQuery();
         $this->assertNotEmpty($q->orders);
         $bindings = $q->getRawBindings()['order'];
@@ -528,7 +528,7 @@ class SpatialTraitTest extends BaseTestCase
 
 class TestModel extends Model
 {
-    use \Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+    use \Cyberhawk\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 
     protected $spatialFields = ['point'];   // TODO: only required when fetching, not saving
 
@@ -571,7 +571,7 @@ class TestRelatedModel extends TestModel
 
 class TestNoSpatialModel extends Model
 {
-    use \Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+    use \Cyberhawk\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 }
 
 class TestPDO extends PDO
@@ -580,7 +580,7 @@ class TestPDO extends PDO
 
     public $counter = 1;
 
-    public function prepare($statement, $driver_options = [])
+    public function prepare($statement, $driver_options = []): false|PDOStatement
     {
         $this->queries[] = $statement;
 
@@ -593,12 +593,12 @@ class TestPDO extends PDO
         return $stmt;
     }
 
-    public function lastInsertId($name = null)
+    public function lastInsertId($name = null): false|string
     {
         return $this->counter++;
     }
 
-    public function resetQueries()
+    public function resetQueries(): void
     {
         $this->queries = [];
     }
