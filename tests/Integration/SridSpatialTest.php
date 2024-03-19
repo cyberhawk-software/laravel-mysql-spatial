@@ -1,11 +1,11 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Types\GeometryCollection;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
-use Grimzy\LaravelMysqlSpatial\Types\MultiPoint;
-use Grimzy\LaravelMysqlSpatial\Types\MultiPolygon;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
+use Cyberhawk\LaravelMysqlSpatial\Types\GeometryCollection;
+use Cyberhawk\LaravelMysqlSpatial\Types\LineString;
+use Cyberhawk\LaravelMysqlSpatial\Types\MultiPoint;
+use Cyberhawk\LaravelMysqlSpatial\Types\MultiPolygon;
+use Cyberhawk\LaravelMysqlSpatial\Types\Point;
+use Cyberhawk\LaravelMysqlSpatial\Types\Polygon;
 
 class SridSpatialTest extends IntegrationBaseTestCase
 {

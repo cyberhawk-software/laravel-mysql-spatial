@@ -1,6 +1,6 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\SpatialServiceProvider;
+use Cyberhawk\LaravelMysqlSpatial\SpatialServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
