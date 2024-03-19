@@ -71,7 +71,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 // For Laravel < 5.5
-// use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
+// use Cyberhawk\LaravelMysqlSpatial\Schema\Blueprint;
 
 class CreatePlacesTable extends Migration {
 
@@ -139,7 +139,7 @@ Then edit the model you just created. It must use the `SpatialTrait` and define 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+use Cyberhawk\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 
 /**
  * @property \Grimzy\LaravelMysqlSpatial\Types\Point   $location
@@ -163,9 +163,9 @@ class Place extends Model
 ### Saving a model
 
 ```php
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
+use Cyberhawk\LaravelMysqlSpatial\Types\Point;
+use Cyberhawk\LaravelMysqlSpatial\Types\Polygon;
+use Cyberhawk\LaravelMysqlSpatial\Types\LineString;
 
 $place1 = new Place();
 $place1->name = 'Empire State Building';
@@ -188,9 +188,9 @@ $place1->save();
 Or if your database fields were created with a specific SRID:
 
 ```php
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
+use Cyberhawk\LaravelMysqlSpatial\Types\Point;
+use Cyberhawk\LaravelMysqlSpatial\Types\Polygon;
+use Cyberhawk\LaravelMysqlSpatial\Types\LineString;
 
 $place1 = new Place();
 $place1->name = 'Empire State Building';
@@ -342,7 +342,7 @@ For Laravel versions prior to 5.5, you can use the Blueprint provided with this 
 
 ```php
 use Illuminate\Database\Migrations\Migration;
-use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
+use Cyberhawk\LaravelMysqlSpatial\Schema\Blueprint;
 
 class CreatePlacesTable extends Migration {
     // ...

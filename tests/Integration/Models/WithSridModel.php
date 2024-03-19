@@ -1,15 +1,15 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+use Cyberhawk\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class WithSridModel.
  *
  * @property int                                          id
- * @property \Grimzy\LaravelMysqlSpatial\Types\Point      location
- * @property \Grimzy\LaravelMysqlSpatial\Types\LineString line
- * @property \Grimzy\LaravelMysqlSpatial\Types\LineString shape
+ * @property \Cyberhawk\LaravelMysqlSpatial\Types\Point      location
+ * @property \Cyberhawk\LaravelMysqlSpatial\Types\LineString line
+ * @property \Cyberhawk\LaravelMysqlSpatial\Types\LineString shape
  */
 class WithSridModel extends Model
 {
