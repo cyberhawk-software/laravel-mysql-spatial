@@ -2,12 +2,13 @@
 
 namespace Cyberhawk\LaravelMysqlSpatial\Eloquent;
 
+use Illuminate\Database\Grammar;
 use Illuminate\Database\Query\Expression;
 
 class SpatialExpression extends Expression
 {
     #[\ReturnTypeWillChange]
-    public function getValue()
+    public function getValue($grammar)
     {
         return "ST_GeomFromText(?, ?, 'axis-order=long-lat')";
     }
